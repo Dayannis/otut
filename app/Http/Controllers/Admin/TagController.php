@@ -92,7 +92,6 @@ class TagController extends Controller
         return redirect()->route('tags.edit', $tag->id)
             ->with('info', 'Etqueta actualizada con éxito');
     }
-    }
 
     /**
      * Remove the specified resource from storage.
