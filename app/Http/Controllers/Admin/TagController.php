@@ -45,7 +45,7 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        $tag = Tag::crate($request->all());
+        $tag = Tag::create($request->all());
 
         return redirect()->route('tags.edit', $tag->id)
             ->with('info', 'Etqueta creada con éxito');
