@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use\App\Http\Requests\categoryStoreRequest;
-use\App\Http\Requests\categoryUpdateRequest;
+use\App\Http\Requests\CategoryStoreRequest;
+use\App\Http\Requests\CategoryUpdateRequest;
 use App\Http\Controllers\Controller;
 use App\Category;
 
@@ -43,7 +43,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
         $category = Category::create($request->all());
 
@@ -84,7 +84,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryUpdateRequest $request, $id)
     {
         $category = Category::find($id);
          $category->fill($request->all())->save();
