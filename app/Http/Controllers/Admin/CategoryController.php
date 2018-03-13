@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use\App\Http\Requests\CategoryStoreRequest;
-use\App\Http\Requests\CategoryUpdateRequest;
+use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Http\Controllers\Controller;
 use App\Category;
 
