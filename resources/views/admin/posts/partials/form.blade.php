@@ -1,3 +1,8 @@
+{{ Form::hidden('user_id', auth()->user()->id) }}
+<div class="form-group">
+	{{ Form::label('category_id', 'Categorías') }}
+	{{ Form::select('category_id', $categories,  null, ['class' => 'form-control', 'id' => 'categories']) }}	
+</div>
 <div class="form-group">
 	{{ Form::label('name', 'Nombre de la entrada') }}
 	{{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}	
