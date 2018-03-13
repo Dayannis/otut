@@ -3,10 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use\App\Http\Requests\postStoreRequest;
+use\App\Http\Requests\postUpdateRequest;
 use App\Http\Controllers\Controller;
+use App\Post;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::orderBy('id', 'DESC')->paginate();
+
+        return view ('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -24,7 +34,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -35,7 +45,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = Post::create($request->all());
+
+        return redirect()->route('posts.edit', $post->id)
+            ->with('info', 'Entrada creada con éxito');
     }
 
     /**
@@ -46,7 +59,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = post::find($id);
+
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -57,7 +72,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -69,7 +86,11 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+         $post->fill($request->all())->save();
+
+        return redirect()->route('posts.edit', $post->id)
+            ->with('info', 'Entrada actualizada con éxito');
     }
 
     /**
@@ -80,6 +101,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::find($id)->delete();
+
+        return back()->with('info', 'Eliminado Correctamente');
     }
 }

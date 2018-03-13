@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use\App\Http\Requests\categoryStoreRequest;
 use\App\Http\Requests\categoryUpdateRequest;
 use App\Http\Controllers\Controller;
-use App\category;
+use App\Category;
 
-class categoryController extends Controller
+class CategoryController extends Controller
 {
     public function __construct()
     {
@@ -22,7 +22,7 @@ class categoryController extends Controller
      */
     public function index()
     {
-        $categories = category::orderBy('id', 'DESC')->paginate();
+        $categories = Category::orderBy('id', 'DESC')->paginate();
 
         return view ('admin.categories.index', compact('categories'));
     }
@@ -59,7 +59,7 @@ class categoryController extends Controller
      */
     public function show($id)
     {
-        $category = category::find($id);
+        $category = Category::find($id);
 
         return view('admin.categories.show', compact('category'));
     }
